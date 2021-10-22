@@ -9,5 +9,4 @@ public class ApiVoitureDeluxeApplication {
 	public static void main(String[] args) {
 		SpringApplication.run(ApiVoitureDeluxeApplication.class, args);
 	}
-
 }
