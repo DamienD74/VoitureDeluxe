@@ -27,12 +27,14 @@ public class Voiture {
 
     private int chevauxFiscaux;
 
+    private String urlImage;
+
     public Voiture()
     {
 
     }
 
-    public Voiture(long id, String nom, String immatriculation, Categorie categorie, Marque marque, String modele, Couleur couleur, float prixReservation, float prixKm, int chevauxFiscaux)
+    public Voiture(long id, String nom, String immatriculation, Categorie categorie, Marque marque, String modele, Couleur couleur, float prixReservation, float prixKm, int chevauxFiscaux, String urlImage)
     {
         this.id = id;
         this.nom = nom;
@@ -44,6 +46,7 @@ public class Voiture {
         this.prixReservation = prixReservation;
         this.prixKm = prixKm;
         this.chevauxFiscaux = chevauxFiscaux;
+        this.urlImage = urlImage;
     }
 
     public long getId()
@@ -139,5 +142,15 @@ public class Voiture {
     public void setChevauxFiscaux(int chevauxFiscaux)
     {
         this.chevauxFiscaux = chevauxFiscaux;
+    }
+
+    public String getUrlImage()
+    {
+        return urlImage;
+    }
+
+    public void setUrlImage(String urlImage)
+    {
+        this.urlImage = urlImage;
     }
 }

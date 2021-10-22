@@ -9,18 +9,36 @@
 
 <body>
     <h1>Liste des Voitures</h1>
+    <a href="ajouterVoiture">Ajouter une voiture</a>    
     <br /><br />
     <div>
         <table border="1">
             <tr>
                 <th>Id</th>
                 <th>Nom</th>
+                <th>immatriculation</th>
                 <th>Catégorie</th>
+                <th>Marque</th>
+                <th>Modèle</th>
+                <th>Couleur</th>
+                <th>Prix réservation</th>
+                <th>Prix/Km</th>
+                <th>Chevaux fiscaux</th>
             </tr>
             <tr th:each="voiture : ${voitures}">
                 <td th:utext="${voiture.id}">...</td>
                 <td th:utext="${voiture.nom}">...</td>
+                <td th:utext="${voiture.immatriculation}">...</td>
                 <td th:utext="${voiture.categorie}">...</td>
+                <td th:utext="${voiture.marque}">...</td>
+                <td th:utext="${voiture.modele}">...</td>
+                <td th:utext="${voiture.couleur}">...</td>
+                <td th:utext="${voiture.prixReservation}">...</td>
+                <td th:utext="${voiture.prixKm}">...</td>
+                <td th:utext="${voiture.chevauxFiscaux}">...</td>
+                <td th:utext="${voiture.urlImage}">...</td>
+                <td><a th:href="@{'/modifierVoiture/' + ${voiture.id}}">Modifier</a></td>
+                <td><a th:href="@{'/supprimerVoiture/' + ${voiture.id}}">Supprimer</a></td>
             </tr>
         </table>
     </div>
