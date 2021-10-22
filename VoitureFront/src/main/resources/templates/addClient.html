@@ -1,0 +1,42 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8" />
+    <title>Add Client</title>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/style.css}"/>
+</head>
+<body>
+<h1>inscription</h1>
+
+<form th:action="@{/addClient}"
+      th:object="${clientForm}" method="POST">
+    nom:
+    <input type="text" th:field="*{name}" />
+    <br/>
+    prenom:
+    <input type="text" th:field="*{surname}" />
+    <br/>
+    date de naissance:
+    <input type="date" th:field="*{data_of_birth}" />
+    <br/>
+    numero de permis de conduire:
+    <input type="number" th:field="*{number_driver_license}" />
+    <br/>
+    date de delivrance du permis de conduire:
+    <input type="date" th:field="*{date_driver_license}" />
+    <br/>-->
+
+    <input type="submit" value="Create" />
+</form>
+
+<br/>
+
+<!-- Check if errorMessage is not null and not empty -->
+
+<div th:if="${errorMessage}" th:utext="${errorMessage}"
+     style="color:red;font-style:italic;">
+    ...
+</div>
+
+</body>
+</html>

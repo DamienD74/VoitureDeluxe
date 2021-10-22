@@ -11,11 +11,11 @@
    <div class="header color_primaire">
       <div><h1 class="header_titre">Voiture Deluxe</h1></div>
       <div><a th:href="@{/voitures}">Admin</a></div>
+      <div><a th:href="@{/addClient}">inscription</a></div>
    </div>  
 
    <div th:each="voiture : ${voitures}" class="color_tertiaire">
       <a th:utext="${voiture.nom}"></a>
    </div>
 </body>
-
 </html>
