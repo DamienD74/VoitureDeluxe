@@ -8,84 +8,103 @@
 </head>
 
 <body>
+    <div class="header color_primaire">
+        <div>
+           <h1 class="header_titre"><a th:href="@{/}">Voiture Deluxe</a></h1>
+        </div>
+        <div><a th:href="@{/voitures}">Admin</a></div>
+     </div>
+     
     <h1>Ajouter une voiture:</h1>
-    <form th:action="@{/ajouterVoiture}" th:object="${voitureForm}" method="POST">
-        <div>
-            <a> Nom de la voiture:
-                <input type="text" th:field="*{nom}" />
-            </a>
-            <a> immatriculation:
-                <input type="text" th:field="*{immatriculation}" />
-            </a>
-        </div>
-        <div>
-            <a> Catégorie de véhicule:
-                <select th:field="*{categorie}">
-                    <option value="Choisis une categorie">Choisis une catégorie</option>
-                    <option value="Voiture">Voiture</option>
-                    <option value="Deux_Roue">Deux roues</option>
-                    <option value="Utilitaire">Utilitaire</option>
-                </select>
-            </a>
-            <a> Marque du véhicule:
-                <select th:field="*{marque}">
-                    <option value="Choisis une marque">Choisis une marque</option>
-                    <option value="Peugeot">Peugeot</option>
-                    <option value="Renault">Renault</option>
-                    <option value="Opel">Opel</option>
-                    <option value="Citroën">Citroën</option>
-                    <option value="Volkswagen">Volkswagen</option>
-                    <option value="BMW">BMW</option>
-                    <option value="Audi">Audi</option>
-                    <option value="Toyota">Toyota</option>
-                    <option value="Merceded">Merceded</option>
-                    <option value="Ford">Ford</option>
-                    <option value="Fiat">Fiat</option>
-                    <option value="Nissan">Nissan</option>
-                </select>
-            </a>
-        </div>
-        <div>
-            <a> Modèle du véhicule:
-                <input type="text" th:field="*{modele}" />
-            </a>
-            <a> Couleur du véhicule:
-                <select th:field="*{couleur}">
-                    <option value="Choisis une couleur">Choisis une couleur</option>
-                    <option value="Rouge">Rouge</option>
-                    <option value="Bleu">Bleu</option>
-                    <option value="Vert">Vert</option>
-                    <option value="Jaune">Jaune</option>
-                    <option value="Rose">Rose</option>
-                    <option value="Violet">Violet</option>
-                    <option value="Marron">Marron</option>
-                    <option value="Orange">Orange</option>
-                    <option value="Noir">Noir</option>
-                    <option value="Grise">Grise</option>
-                    <option value="Blanche">Blanche</option>
-                </select>
-            </a>
-        </div>
-        <div>
-            <a> Prix Réservation:
-                <input type="text" th:field="*{prixReservation}" />
-            </a>
-            <a> Prix/Km:
-                <input type="text" th:field="*{prixKm}" />
-            </a>
-        </div>
-        <div>
-            <a> Nombre de chevaux fiscaux:
-                <input type="text" th:field="*{chevauxFiscaux}" />
-            </a>
-            <a> Url image Véhicule:
-                <input type="text" th:field="*{urlImage}" />
-            </a>
+    <form th:action="@{/ajouterVoiture}" th:object="${voitureForm}" method="POST" class="block_formulaire_voiture color_primaire">
+        <div class="ligne_formulaire_voiture">
+            <div class="colonne_formulaire_voiture">
+                <div class="formulaire_entree_voiture">
+                    <div>Nom de la voiture:</div>
+                    <div><input type="text" th:field="*{nom}" /></div>
+                </div>
+                <div class="formulaire_entree_voiture">
+                    <div>Catégorie de véhicule:</div>
+                    <div>
+                        <select th:field="*{categorie}">
+                            <option value="Choisis une categorie">Choisis une catégorie</option>
+                            <option value="Voiture">Voiture</option>
+                            <option value="Deux_Roue">Deux roues</option>
+                            <option value="Utilitaire">Utilitaire</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="formulaire_entree_voiture">
+                    <div> Modèle du véhicule:</div>
+                    <div><input type="text" th:field="*{modele}" /></div>
+                </div>
+                <div class="formulaire_entree_voiture">
+                    <div>Prix Réservation:</div>
+                    <div><input type="text" th:field="*{prixReservation}" />
+                    </div>
+                </div>
+                <div class="formulaire_entree_voiture">
+                    <div>Nombre de chevaux fiscaux:</div>
+                    <div><input type="text" th:field="*{chevauxFiscaux}" /></div>
+                </div>
+            </div>
+            <div class="colonne_formulaire_voiture">
+                <div class="formulaire_entree_voiture">
+                    <div> immatriculation:</div>
+                    <div><input type="text" th:field="*{immatriculation}" /></div>
+                </div>
+                <div class="formulaire_entree_voiture">
+                    <div> Marque du véhicule:</div>
+                    <div>
+                        <select th:field="*{marque}">
+                            <option value="Choisis une marque">Choisis une marque</option>
+                            <option value="Peugeot">Peugeot</option>
+                            <option value="Renault">Renault</option>
+                            <option value="Opel">Opel</option>
+                            <option value="Citroën">Citroën</option>
+                            <option value="Volkswagen">Volkswagen</option>
+                            <option value="BMW">BMW</option>
+                            <option value="Audi">Audi</option>
+                            <option value="Toyota">Toyota</option>
+                            <option value="Mercedes">Mercedes</option>
+                            <option value="Ford">Ford</option>
+                            <option value="Fiat">Fiat</option>
+                            <option value="Nissan">Nissan</option>
+                            <option value="Lamborghini">Lamborghini</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="formulaire_entree_voiture">
+                    <div>Couleur du véhicule:</div>
+                    <div><select th:field="*{couleur}">
+                            <option value="Choisis une couleur">Choisis une couleur</option>
+                            <option value="Rouge">Rouge</option>
+                            <option value="Bleu">Bleu</option>
+                            <option value="Vert">Vert</option>
+                            <option value="Jaune">Jaune</option>
+                            <option value="Rose">Rose</option>
+                            <option value="Violet">Violet</option>
+                            <option value="Marron">Marron</option>
+                            <option value="Orange">Orange</option>
+                            <option value="Noir">Noir</option>
+                            <option value="Grise">Grise</option>
+                            <option value="Blanche">Blanche</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="formulaire_entree_voiture">
+                    <div>Prix/Km:</div>
+                    <div><input type="text" th:field="*{prixKm}" /></div>
+                </div>
+                <div class="formulaire_entree_voiture">
+                    <div> Url image Véhicule:</div>
+                    <div><input type="text" th:field="*{urlImage}" /></div>
+                </div>
+            </div>
         </div>
         <br />
-        <input type="submit" value="Ajouter" />
+        <input type="submit" class="formulaire_button color_secondaire" value="Ajouter" />
     </form>
-
     <br />
     <div th:if="${errorMessage}" th:utext="${errorMessage}" style="color:red;font-style:italic;">
         ...

@@ -3,18 +3,47 @@
 
 <head>
    <meta charset="UTF-8" />
-   <title>Bienvenu</title>
+   <title>Voiture Deluxe</title>
    <link rel="stylesheet" type="text/css" th:href="@{/css/style.css}" />
 </head>
 
 <body>
    <div class="header color_primaire">
-      <div><h1 class="header_titre">Voiture Deluxe</h1></div>
+      <div>
+         <h1 class="header_titre"><a th:href="@{/}">Voiture Deluxe</a></h1>
+      </div>
       <div><a th:href="@{/voitures}">Admin</a></div>
-   </div>  
+   </div>
 
-   <div th:each="voiture : ${voitures}" class="color_tertiaire">
-      <a th:utext="${voiture.nom}"></a>
+   <div th:each="voiture : ${voitures}" class="color_tertiaire block_voiture">
+      <div>
+         <img th:src="@{'/image/' + ${voiture.urlImage}}" width="350px" height="200px">
+      </div>
+      <div class="block_voiture_information">
+         <div>
+            <a th:utext="${voiture.nom}" class="block_voiture_titre"></a>
+         </div>
+         <div>
+            <table class="block_voiture_tableau">
+               <tr>
+                  <th>Marque</th>
+                  <th>Modèle</th>
+                  <th>Couleur</th>
+                  <th>Prix de réservation</th>
+               </tr>
+               <tr>
+                  <td th:utext="${voiture.marque}"></td>
+                  <td th:utext="${voiture.modele}"></td>
+                  <td th:utext="${voiture.couleur}"></td>
+                  <td th:utext="${voiture.prixReservation} + '€'"></td>
+               </tr>
+            </table>
+         </div>
+         <div>
+            <a th:href="@{'/voiture/' + ${voiture.id}}"><button class="block_voiture_bouton color_secondaire">Détail et
+                  location</button></a>
+         </div>
+      </div>
    </div>
 </body>
 
