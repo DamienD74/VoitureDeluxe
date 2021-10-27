@@ -2,6 +2,8 @@ package voitureDeluxe.controller;
 
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -17,8 +19,8 @@ import voitureDeluxe.model.Voiture;
 public class VoitureController {
     
     @RequestMapping(value = {"/voitures"}, method = RequestMethod.GET)
-    public String voitures (Model model)
-    {   
+    public String voitures (Model model, HttpServletRequest request)
+    {  
         String url = "http://localhost:8082/voitures";
         RestTemplate restTemplate = new RestTemplate();
         List<Voiture> voitureList = restTemplate.getForObject(url, List.class);
@@ -57,7 +59,7 @@ public class VoitureController {
 
         Voiture voiture = new Voiture(voitureForm.getId(), voitureForm.getNom(), voitureForm.getImmatriculation(),
                 voitureForm.getCategorie(), voitureForm.getMarque(), voitureForm.getModele(), voitureForm.getCouleur(),
-                voitureForm.getPrixReservation(), voitureForm.getPrixKm(), voitureForm.getChevauxFiscaux(), voitureForm.getUrlImage());
+                voitureForm.getPrixReservation(), voitureForm.getPrixKm(), voitureForm.getChevauxFiscaux(), voitureForm.getUrlImage(), voitureForm.getNombreKm());
 
         listeVoiture.add(voiture);
 
@@ -75,7 +77,7 @@ public class VoitureController {
 
         VoitureForm voitureForm = new VoitureForm(voiture.getId(), voiture.getNom(), voiture.getImmatriculation(),
         voiture.getCategorie(), voiture.getMarque(), voiture.getModele(), voiture.getCouleur(),
-        voiture.getPrixReservation(), voiture.getPrixKm(), voiture.getChevauxFiscaux(), voiture.getUrlImage());
+        voiture.getPrixReservation(), voiture.getPrixKm(), voiture.getChevauxFiscaux(), voiture.getUrlImage(), voiture.getNombreKm());
        
         model.addAttribute("voitureForm", voitureForm);
         
@@ -91,7 +93,7 @@ public class VoitureController {
 
         Voiture voiture = new Voiture(voitureForm.getId(), voitureForm.getNom(), voitureForm.getImmatriculation(),
         voitureForm.getCategorie(), voitureForm.getMarque(), voitureForm.getModele(), voitureForm.getCouleur(),
-        voitureForm.getPrixReservation(), voitureForm.getPrixKm(), voitureForm.getChevauxFiscaux(), voitureForm.getUrlImage());
+        voitureForm.getPrixReservation(), voitureForm.getPrixKm(), voitureForm.getChevauxFiscaux(), voitureForm.getUrlImage(), voitureForm.getNombreKm());
 
         restTemplate.put(url, voiture, Voiture.class);
 

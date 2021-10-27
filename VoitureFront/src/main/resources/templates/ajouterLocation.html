@@ -1,0 +1,44 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8" />
+    <title>Louer un véhicule</title>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/style.css}" />
+</head>
+
+<body>
+    <div class="header color_primaire">
+        <div>
+           <h1 class="header_titre"><a th:href="@{/}">Voiture Deluxe</a></h1>
+        </div>
+        <div><a th:href="@{/voitures}">Admin</a></div>
+     </div>
+     
+    <h1>Louer un véhicule:</h1>
+    <form th:action="@{/ajouterLocation}" th:object="${locationForm}" method="POST" class="block_formulaire_voiture color_primaire">
+        <input type="hidden" th:field="*{IdClient}" value="${voiture.id}" />
+        <div class="colonne_formulaire_voiture">
+            <div class="formulaire_entree_voiture">
+                <div>Date de début de location</div>
+                <div><input type="date" th:field="*{dateDeDebut}" /></div>
+            </div>
+            <div class="formulaire_entree_voiture">
+                <div>Date de fin de location</div>
+                <div><input type="date" th:field="*{dateDeFin}" /></div>
+            </div>
+            <div class="formulaire_entree_voiture">
+                <div> Estimation du nombre de kilomètre</div>
+                <div><input type="text" th:field="*{estimationKm}" /></div>
+            </div>
+        </div>
+        <br />
+        <input type="submit" class="formulaire_button color_secondaire" value="Louer" />
+    </form>
+    <br />
+    <div th:if="${errorMessage}" th:utext="${errorMessage}" style="color:red;font-style:italic;">
+        ...
+    </div>
+</body>
+
+</html>

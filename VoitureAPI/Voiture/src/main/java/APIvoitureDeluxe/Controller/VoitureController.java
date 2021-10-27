@@ -52,6 +52,7 @@ public class VoitureController {
         voitureTable.setPrixKm(voiture.getPrixKm());
         voitureTable.setChevauxFiscaux(voiture.getChevauxFiscaux());
         voitureTable.setUrlImage(voiture.getUrlImage());
+        voitureTable.setNombreKm(voiture.getNombreKm());
         voitureRepository.save(voitureTable);
     }
 

@@ -29,12 +29,14 @@ public class VoitureForm {
 
     private String urlImage;
 
+    private int nombreKm;
+
     public VoitureForm()
     {
 
     }
 
-    public VoitureForm(long id, String nom, String immatriculation, Categorie categorie, Marque marque, String modele, Couleur couleur, float prixReservation, float prixKm, int chevauxFiscaux, String urlImage)
+    public VoitureForm(long id, String nom, String immatriculation, Categorie categorie, Marque marque, String modele, Couleur couleur, float prixReservation, float prixKm, int chevauxFiscaux, String urlImage, int nombreKm)
     {
         this.id = id;
         this.nom = nom;
@@ -47,6 +49,7 @@ public class VoitureForm {
         this.prixKm = prixKm;
         this.chevauxFiscaux = chevauxFiscaux;
         this.urlImage = urlImage;
+        this.nombreKm = nombreKm;
     }
 
     public long getId()
@@ -157,5 +160,15 @@ public class VoitureForm {
     public void setUrlImage(String urlImage)
     {
         this.urlImage = urlImage;
+    }
+
+    public int getNombreKm()
+    {
+        return nombreKm;
+    }
+
+    public void setNombreKm(int nombreKm)
+    {
+        this.nombreKm = nombreKm;
     }
 }
