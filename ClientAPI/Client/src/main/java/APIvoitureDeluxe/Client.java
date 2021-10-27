@@ -2,10 +2,7 @@ package APIvoitureDeluxe;
 
 import org.springframework.format.annotation.DateTimeFormat;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.util.Date;
 
 @Entity
@@ -26,17 +23,23 @@ public class Client {
     @Column
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     public Date dateDriverLicense;
+    @Column
+    public String email;
+    @Column
+    public String mdp;
 
     public Client() {
     }
 
-    public Client(int id, String name, String surname, Date dateOfBirth, int numberdriverlicense, Date dateDriverLicense) {
+    public Client(int id, String name, String surname, Date dateOfBirth, int numberdriverlicense, Date dateDriverLicense, String email, String mdp) {
         this.id = id;
         this.name = name;
         this.surname = surname;
         this.dateOfBirth = dateOfBirth;
         this.numberdriverlicense = numberdriverlicense;
         this.dateDriverLicense = dateDriverLicense;
+        this.email = email;
+        this.mdp = mdp;
     }
 
     public int getId() {
@@ -87,15 +90,33 @@ public class Client {
         this.dateDriverLicense = dateDriverLicense;
     }
 
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public String getMdp() {
+        return mdp;
+    }
+
+    public void setMdp(String mdp) {
+        this.mdp = mdp;
+    }
+
     @Override
     public String toString() {
         return "Client{" +
                 "id=" + id +
                 ", name='" + name + '\'' +
                 ", surname='" + surname + '\'' +
-                ", data_of_birth=" + dateOfBirth +
-                ", number_driver_license=" + numberdriverlicense +
-                ", date_driver_license=" + dateDriverLicense +
+                ", dateOfBirth=" + dateOfBirth +
+                ", numberdriverlicense=" + numberdriverlicense +
+                ", dateDriverLicense=" + dateDriverLicense +
+                ", email='" + email + '\'' +
+                ", mdp='" + mdp + '\'' +
                 '}';
     }
 }

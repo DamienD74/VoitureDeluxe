@@ -1,0 +1,17 @@
+ .../src/main/java/APIvoitureDeluxe/Client.java     | 53 [32m+++++++++[m[31m---------[m
+ .../src/main/java/voitureDeluxe/Enum/Marque.java   |  3 [31m--[m
+ .../ClientController.java                          | 46 [32m++++++++[m[31m--------[m
+ .../{Controller => controller}/MainController.java |  9 [32m++[m[31m--[m
+ .../VoitureController.java                         |  2 [32m+[m[31m-[m
+ .../voitureDeluxe/{Enum => enums}/Categorie.java   |  2 [32m+[m[31m-[m
+ .../voitureDeluxe/{Enum => enums}/Couleur.java     |  2 [32m+[m[31m-[m
+ .../src/main/java/voitureDeluxe/enums/Marque.java  |  3 [32m++[m
+ .../main/java/voitureDeluxe/form/ClientForm.java   | 36 [32m+++++++[m[31m------[m
+ .../main/java/voitureDeluxe/form/VoitureForm.java  |  2 [32m+[m[31m-[m
+ .../src/main/java/voitureDeluxe/model/Client.java  | 62 [32m+++++++++++++[m[31m---------[m
+ .../src/main/java/voitureDeluxe/model/Voiture.java |  2 [32m+[m[31m-[m
+ .../src/main/resources/static/css/style.css        |  3 [32m++[m
+ .../src/main/resources/templates/addClient.html    |  6 [32m+[m[31m--[m
+ .../src/main/resources/templates/listClient.html   | 40 [32m++++++++++++++[m
+ .../src/main/resources/templates/updateClient.html | 42 [32m+++++++++++++++[m
+ 16 files changed, 212 insertions(+), 101 deletions(-)

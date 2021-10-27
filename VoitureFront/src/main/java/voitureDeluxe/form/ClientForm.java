@@ -13,6 +13,8 @@ public class ClientForm {
     public int numberDriverLicense;
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     public Date dateDriverLicense;
+    public String email;
+    public String mdp;
 
     public ClientForm() {
     }
@@ -64,4 +66,21 @@ public class ClientForm {
     public void setDateDriverLicense(Date dateDriverLicense) {
         this.dateDriverLicense = dateDriverLicense;
     }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public String getMdp() {
+        return mdp;
+    }
+
+    public void setMdp(String mdp) {
+        this.mdp = mdp;
+    }
 }
+

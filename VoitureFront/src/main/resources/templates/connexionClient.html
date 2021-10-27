@@ -8,31 +8,14 @@
 <body>
 <h1>inscription</h1>
 
-<form th:action="@{/addClient}"
+<form th:action="@{/connexionClient}"
       th:object="${clientForm}" method="POST">
-    nom:
-    <input type="text" th:field="*{name}" />
+    E-mail
+    <input type="text" th:field="*{email}" />
     <br/>
-    prenom:
-    <input type="text" th:field="*{surname}" />
-    <br/>
-    date de naissance:
-    <input type="date" th:field="*{dateOfBirth}" />
-    <br/>
-    numero de permis de conduire:
-    <input type="number" th:field="*{numberDriverLicense}" />
-    <br/>
-    date de delivrance du permis de conduire:
-    <input type="date" th:field="*{dateDriverLicense}" />
-    <br/>-->
-    adresse mail
-    <input type="email" th:field="*{email}" />
-    <br/>-->
-    mot de passe
+    password:
     <input type="text" th:field="*{mdp}" />
-    <br/>-->
-
-
+    <br/>
     <input type="submit" value="Create" />
 </form>
 

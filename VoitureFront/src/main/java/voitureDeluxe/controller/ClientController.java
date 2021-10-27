@@ -8,6 +8,7 @@ import org.springframework.web.client.RestTemplate;
 import voitureDeluxe.form.ClientForm;
 import voitureDeluxe.model.Client;
 
+import javax.servlet.http.HttpSession;
 import java.util.Date;
 
 @Controller
@@ -39,7 +40,7 @@ public class ClientController {
     }
 
     @RequestMapping(value = { "/addClient" }, method = RequestMethod.POST)
-    public String saveClient(Model model, @ModelAttribute("clientForm") ClientForm clientForm) {
+    public String saveClient(HttpSession session ,Model model, @ModelAttribute("clientForm") ClientForm clientForm) {
         String url = "http://localhost:8081/Clients";
 
         String name = clientForm.getName();
@@ -47,12 +48,19 @@ public class ClientController {
         Date dateOfBirth = clientForm.getDateOfBirth();
         int number = clientForm.getNumberDriverLicense();
         Date dateDriver = clientForm.getDateDriverLicense();
+        String email = clientForm.getEmail();
+        String mdp = clientForm.getMdp();
 
         if (name != null && name.length() > 0) {
-            Client newClient = new Client(name, surname, dateOfBirth, number, dateDriver);
+            Client newClient = new Client(name, surname, dateOfBirth, number, dateDriver, email, mdp);
             new RestTemplate().postForObject(url, newClient, Client.class);
+            String url2 = "http://localhost:8081/connexion";
+            Client clientRecuperer = new RestTemplate().postForObject(url2, newClient, Client.class);
+            session .setAttribute("id_utilisateur", clientRecuperer.getId());
 
-            return "redirect:/listClient";
+
+
+            return "redirect:/";
         }
         model.addAttribute("errorMessage", errorMessage);
         return "addClient";
@@ -100,5 +108,38 @@ public class ClientController {
             }
         }
         return "updateClient";
+    }
+
+    @RequestMapping(value = {"/connexionClient"}, method = RequestMethod.GET)
+    public String connexion(HttpSession session, Model model){
+        ClientForm clientForm = new ClientForm();
+        model.addAttribute("clientForm", clientForm);
+
+        System.out.println(session.getAttribute("id_utilisateur"));
+
+        return "connexionClient";
+
+    }
+
+    @RequestMapping(value = {"/connexionClient"}, method = RequestMethod.POST)
+    public String connexion(HttpSession session, @ModelAttribute("clientForm") ClientForm clientForm){
+        String url = "http://localhost:8081/verificationClient";
+        Client client = new Client();
+        client.setEmail(clientForm.getEmail());
+        client.setMdp(clientForm.getMdp());
+
+        if (new RestTemplate().postForObject(url, client, Boolean.class))
+        {
+            String url2 = "http://localhost:8081/connexion";
+            Client clientRecuperer = new RestTemplate().postForObject(url2, client, Client.class);
+            session .setAttribute("id_utilisateur", clientRecuperer.getId());
+        }
+        else
+        {
+            System.out.println("prout2");
+            session .setAttribute("id_utilisateur", null);
+        }
+
+        return "redirect:/";
     }
 }

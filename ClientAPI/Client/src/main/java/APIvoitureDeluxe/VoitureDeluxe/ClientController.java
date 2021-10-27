@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.Optional;
 
 @RestController
-public class Controller {
+public class ClientController{
 
     @Autowired
     public ClientDao clientDao ;
@@ -45,4 +45,15 @@ public class Controller {
         clientDao.deleteById(id);
     }
 
+    @PostMapping(value = "verificationClient")
+    public boolean verificationClient(@RequestBody Client client){
+
+        return clientDao.existsByEmailAndMdp(client.getEmail(), client.getMdp());
+    }
+
+    @PostMapping(value = "connexion")
+    public Optional<Client> connexion(@RequestBody Client client){
+
+        return clientDao.findByEmailAndMdp(client.getEmail(), client.getMdp());
+    }
 }
