@@ -1,17 +1,18 @@
-package voitureDeluxe.Controller;
+package voitureDeluxe.controller;
 
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.beans.propertyeditors.CustomDateEditor;
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.WebDataBinder;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.client.RestTemplate;
 import voitureDeluxe.form.ClientForm;
 import voitureDeluxe.model.Client;
 
-import java.util.ArrayList;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 
 @Controller
@@ -31,7 +32,7 @@ public class ClientController {
 
         String url = "http://localhost:8081/Clients";
         RestTemplate restTemplate = new RestTemplate();
-        List<Client> clientList = restTemplate.getForObject(url, List.class);
+        Client[] clientList = restTemplate.getForObject(url, Client[].class);
         model.addAttribute("clients", clientList);
 
         return "listClient";
@@ -43,29 +44,29 @@ public class ClientController {
 
         return "addClient";
     }
-    @RequestMapping(value = {"/addClient"}, method = RequestMethod.POST)
+
+        @RequestMapping(value = {"/addClient"}, method = RequestMethod.POST)
     public String saveClient(Model model, @ModelAttribute("clientForm") ClientForm clientForm) {
         String url = "http://localhost:8081/Clients";
-        List<Client> clients = new RestTemplate().getForObject(url, List.class);
 
         String name = clientForm.getName();
         String surname = clientForm.getSurname();
-        int date_of_birth = clientForm.getData_of_birth();
-        int number = clientForm.getNumber_driver_license();
-        int date_driver = clientForm.getDate_driver_license();
+        Date dateOfBirth = clientForm.getDateOfBirth();
+        int number = clientForm.getNumberDriverLicense();
+        Date dateDriver = clientForm.getDateDriverLicense();
 
         if (name != null && name.length() > 0 ) {
-            Client newClient = new Client(name, surname, date_of_birth, number, date_driver);
+            Client newClient = new Client(name, surname, dateOfBirth, number, dateDriver);
             new RestTemplate().postForObject("http://localhost:8081/Clients", newClient, Client.class);
 
-            return "redirect:/index";
+            return "redirect:/listClient";
         }
         model.addAttribute("errorMessage", errorMessage);
         return "addClient";
     }
-    @RequestMapping(value = {"/delete/{id}"}, method = RequestMethod.GET)
+    @RequestMapping(value = {"/deleteClient/{id}"}, method = RequestMethod.GET)
     public String deleteClient(@PathVariable int id){
-        new RestTemplate().delete("http://localhost:8081/Character/"+id);
+        new RestTemplate().delete("http://localhost:8081/Client/"+id);
 
         return "redirect:/listClient";    }
 
@@ -73,11 +74,12 @@ public class ClientController {
     public String update (@PathVariable int id, Model model){
         ClientForm clientForm = new ClientForm();
         Client client = new RestTemplate().getForObject("http://localhost:8081/Client/"+id, Client.class);
+        clientForm.setId(client.getId());
         clientForm.setName(client.getName());
         clientForm.setSurname(client.getSurname());
-        clientForm.setData_of_birth(client.getData_of_birth());
-        clientForm.setNumber_driver_license(client.getNumber_driver_license());
-        clientForm.setDate_driver_license(client.getDate_driver_license());
+        clientForm.setDateOfBirth(client.getDateOfBirth());
+        clientForm.setNumberDriverLicense(client.getNumberDriverLicense());
+        clientForm.setDateDriverLicense(client.getDateDriverLicense());
 
         model.addAttribute("clientForm" , clientForm);
 
@@ -94,9 +96,9 @@ public class ClientController {
             if (client.getId() == id){
                 client.setName(clientForm.getName());
                 client.setSurname(clientForm.getSurname());
-                client.setData_of_birth(clientForm.getData_of_birth());
-                client.setNumber_driver_license(clientForm.getNumber_driver_license());
-                client.setDate_driver_license(clientForm.getDate_driver_license());
+                client.setDateOfBirth(clientForm.getDateOfBirth());
+                client.setNumberDriverLicense(clientForm.getNumberDriverLicense());
+                client.setDateDriverLicense(clientForm.getDateDriverLicense());
 
                 new RestTemplate().put("http://localhost:8081/Client/" + client.getId(), client, Client.class);
                 return "redirect:/listClient";

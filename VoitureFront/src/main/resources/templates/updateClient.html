@@ -2,13 +2,13 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8" />
-    <title>Add Client</title>
+    <title>modifier Client</title>
     <link rel="stylesheet" type="text/css" th:href="@{/css/style.css}"/>
 </head>
 <body>
-<h1>inscription</h1>
+<h1>modifier client</h1>
 
-<form th:action="@{/addClient}"
+<form th:action="@{/updateClient/} + ${clientForm.id}"
       th:object="${clientForm}" method="POST">
     nom:
     <input type="text" th:field="*{name}" />

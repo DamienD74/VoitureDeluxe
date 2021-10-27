@@ -1,6 +1,6 @@
 package voitureDeluxe.form;
 
-import voitureDeluxe.Enum.*;
+import voitureDeluxe.enums.*;
 
 public class VoitureForm {
     

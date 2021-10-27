@@ -1,26 +1,38 @@
 package voitureDeluxe.model;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
+import java.util.Date;
+
+
 public class Client {
     public int id;
     public String name;
     public String surname;
-    public int data_of_birth ;
-    public int number_driver_license;
-    public int date_driver_license;
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
+    public Date dateOfBirth;
+    public int numberDriverLicense;
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
+    public Date dateDriverLicense;
 
     public Client() {
     }
 
-    public Client(int id, String name, String surname, int data_of_birth, int number_driver_license, int date_driver_license) {
+    public Client(int id, String name, String surname, Date dateOfBirth, int numberDriverLicense, Date dateDriverLicense) {
         this.id = id;
-        name = name;
-        surname = surname;
-        this.data_of_birth = data_of_birth;
-        this.number_driver_license = number_driver_license;
-        this.date_driver_license = date_driver_license;
+        this.name = name;
+        this.surname = surname;
+        this.dateOfBirth = dateOfBirth;
+        this.numberDriverLicense = numberDriverLicense;
+        this.dateDriverLicense = dateDriverLicense;
     }
 
-    public Client(String name, String surname, int date_of_birth, int number, int date_driver) {
+    public Client(String name, String surname, Date dateOfBirth, int numberDriverLicense, Date dateDriverLicense) {
+        this.name = name;
+        this.surname = surname;
+        this.dateOfBirth = dateOfBirth;
+        this.numberDriverLicense = numberDriverLicense;
+        this.dateDriverLicense = dateDriverLicense;
     }
 
     public int getId() {
@@ -47,28 +59,28 @@ public class Client {
         this.surname = surname;
     }
 
-    public int getData_of_birth() {
-        return data_of_birth;
+    public Date getDateOfBirth() {
+        return dateOfBirth;
     }
 
-    public void setData_of_birth(int data_of_birth) {
-        this.data_of_birth = data_of_birth;
+    public void setDateOfBirth(Date dateOfBirth) {
+        this.dateOfBirth = dateOfBirth;
     }
 
-    public int getNumber_driver_license() {
-        return number_driver_license;
+    public int getNumberDriverLicense() {
+        return numberDriverLicense;
     }
 
-    public void setNumber_driver_license(int number_driver_license) {
-        this.number_driver_license = number_driver_license;
+    public void setNumberDriverLicense(int numberDriverLicense) {
+        this.numberDriverLicense = numberDriverLicense;
     }
 
-    public int getDate_driver_license() {
-        return date_driver_license;
+    public Date getDateDriverLicense() {
+        return dateDriverLicense;
     }
 
-    public void setDate_driver_license(int date_driver_license) {
-        this.date_driver_license = date_driver_license;
+    public void setDateDriverLicense(Date dateDriverLicense) {
+        this.dateDriverLicense = dateDriverLicense;
     }
 
     @Override
@@ -77,9 +89,9 @@ public class Client {
                 "id=" + id +
                 ", name='" + name + '\'' +
                 ", surname='" + surname + '\'' +
-                ", data_of_birth=" + data_of_birth +
-                ", number_driver_license=" + number_driver_license +
-                ", date_driver_license=" + date_driver_license +
+                ", data_of_birth=" + dateOfBirth +
+                ", number_driver_license=" + numberDriverLicense +
+                ", date_driver_license=" + dateDriverLicense +
                 '}';
     }
 }

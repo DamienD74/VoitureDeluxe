@@ -1,12 +1,18 @@
 package voitureDeluxe.form;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
+import java.util.Date;
+
 public class ClientForm {
     public int id;
     public String name;
     public String surname;
-    public int data_of_birth ;
-    public int number_driver_license;
-    public int date_driver_license;
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
+    public Date dateOfBirth;
+    public int numberDriverLicense;
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
+    public Date dateDriverLicense;
 
     public ClientForm() {
     }
@@ -35,27 +41,27 @@ public class ClientForm {
         this.surname = surname;
     }
 
-    public int getData_of_birth() {
-        return data_of_birth;
+    public Date getDateOfBirth() {
+        return dateOfBirth;
     }
 
-    public void setData_of_birth(int data_of_birth) {
-        this.data_of_birth = data_of_birth;
+    public void setDateOfBirth(Date dateOfBirth) {
+        this.dateOfBirth = dateOfBirth;
     }
 
-    public int getNumber_driver_license() {
-        return number_driver_license;
+    public int getNumberDriverLicense() {
+        return numberDriverLicense;
     }
 
-    public void setNumber_driver_license(int number_driver_license) {
-        this.number_driver_license = number_driver_license;
+    public void setNumberDriverLicense(int numberDriverLicense) {
+        this.numberDriverLicense = numberDriverLicense;
     }
 
-    public int getDate_driver_license() {
-        return date_driver_license;
+    public Date getDateDriverLicense() {
+        return dateDriverLicense;
     }
 
-    public void setDate_driver_license(int date_driver_license) {
-        this.date_driver_license = date_driver_license;
+    public void setDateDriverLicense(Date dateDriverLicense) {
+        this.dateDriverLicense = dateDriverLicense;
     }
 }

@@ -1,4 +1,4 @@
-package voitureDeluxe.Controller;
+package voitureDeluxe.controller;
 
 import java.util.List;
 
@@ -25,6 +25,17 @@ public class VoitureController {
         model.addAttribute("voitures",voitureList);
 
         return "admin_listeVoiture";
+    }
+
+    @RequestMapping(value = {"/voiture/{id}"}, method = RequestMethod.GET)
+    public String voiture (Model model, @PathVariable final Long id)
+    {   
+        String url = "http://localhost:8082/voitures/" + id;
+        RestTemplate restTemplate = new RestTemplate();
+        Voiture voiture = restTemplate.getForObject(url, Voiture.class);
+        model.addAttribute("voiture",voiture);
+
+        return "information_voiture";
     }
 
     @RequestMapping(value = "/ajouterVoiture", method = RequestMethod.GET)
