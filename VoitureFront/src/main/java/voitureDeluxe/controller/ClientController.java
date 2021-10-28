@@ -92,22 +92,17 @@ public class ClientController {
     @RequestMapping(value = { "/updateClient/{id}" }, method = RequestMethod.POST)
     public String updateClient(@PathVariable int id, @ModelAttribute("clientForm") ClientForm clientForm) {
 
-        String url = "http://localhost:8081/Clients";
-        Client[] clients = new RestTemplate().getForObject(url, Client[].class);
+        String url = "http://localhost:8081/Client/" + id;
+        Client client = new RestTemplate().getForObject(url, Client.class);
 
-        for (Client client : clients) {
-            if (client.getId() == id) {
-                client.setName(clientForm.getName());
-                client.setSurname(clientForm.getSurname());
-                client.setDateOfBirth(clientForm.getDateOfBirth());
-                client.setNumberDriverLicense(clientForm.getNumberDriverLicense());
-                client.setDateDriverLicense(clientForm.getDateDriverLicense());
+        client.setName(clientForm.getName());
+        client.setSurname(clientForm.getSurname());
+        client.setDateOfBirth(clientForm.getDateOfBirth());
+        client.setNumberDriverLicense(clientForm.getNumberDriverLicense());
+        client.setDateDriverLicense(clientForm.getDateDriverLicense());
 
-                new RestTemplate().put("http://localhost:8081/Client/" + client.getId(), client, Client.class);
-                return "redirect:/listClient";
-            }
-        }
-        return "updateClient";
+        new RestTemplate().put(url, client, Client.class);
+        return "redirect:/listClient";
     }
 
     @RequestMapping(value = {"/connexionClient"}, method = RequestMethod.GET)
@@ -136,7 +131,6 @@ public class ClientController {
         }
         else
         {
-            System.out.println("prout2");
             session .setAttribute("id_utilisateur", null);
         }
 

@@ -17,7 +17,8 @@
      
     <h1>Louer un véhicule:</h1>
     <form th:action="@{/ajouterLocation}" th:object="${locationForm}" method="POST" class="block_formulaire_voiture color_primaire">
-        <input type="hidden" th:field="*{IdClient}" value="${voiture.id}" />
+        <input type="hidden" th:field="*{IdVoiture}" th:value="${locationForm.IdVoiture}" />
+        <input type="hidden" th:field="*{NombreKmDepart}" th:value="${locationForm.NombreKmDepart}" />
         <div class="colonne_formulaire_voiture">
             <div class="formulaire_entree_voiture">
                 <div>Date de début de location</div>

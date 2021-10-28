@@ -27,18 +27,18 @@ public class LocationController {
         Voiture voiture = restTemplate.getForObject(url, Voiture.class);
 
         LocationForm locationForm = new LocationForm();
+        locationForm.setIdVoiture(voiture.getId());
+        locationForm.setNombreKmDepart(voiture.getNombreKm());
         model.addAttribute("locationForm", locationForm);
-        model.addAttribute("voiture", voiture);
 
         return "ajouterLocation";
     }
 
     @RequestMapping(value = "/ajouterLocation", method = RequestMethod.POST)
     public String ajouterVoiture(
-    @ModelAttribute("voitureForm") LocationForm locationForm, HttpServletRequest request)
+    @ModelAttribute("locationForm") LocationForm locationForm, HttpServletRequest request)
     {
         int session = (int)request.getSession().getAttribute("id_utilisateur");
-        System.out.println(session);
 
         String url = "http://localhost:8083/locations";
         RestTemplate restTemplate = new RestTemplate();

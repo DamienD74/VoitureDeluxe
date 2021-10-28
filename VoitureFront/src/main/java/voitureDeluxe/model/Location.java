@@ -2,17 +2,21 @@ package voitureDeluxe.model;
 
 import java.util.Date;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 public class Location {
     
     private long id;
 
-    private Date date_de_debut;
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
+    private Date dateDeDebut;
 
-    private Date date_de_fin;
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
+    private Date dateDeFin;
 
     private int id_client;
 
-    private int id_voiture;
+    private long id_voiture;
 
     private int estimationKm;
 
@@ -23,11 +27,11 @@ public class Location {
 
     }
 
-    public Location(long id, Date date_de_debut, Date date_de_fin, int id_client, int id_voiture, int estimationKm, int nombre_km_depart)
+    public Location(long id, Date dateDeDebut, Date dateDeFin, int id_client, long id_voiture, int estimationKm, int nombre_km_depart)
     {
         this.id = id;
-        this.date_de_debut = date_de_debut;
-        this.date_de_fin = date_de_fin;
+        this.dateDeDebut = dateDeDebut;
+        this.dateDeFin = dateDeFin;
         this.id_client = id_client;
         this.id_voiture = id_voiture;
         this.estimationKm = estimationKm;
@@ -41,22 +45,22 @@ public class Location {
 
     public Date getDateDeDebut()
     {
-        return date_de_debut;
+        return dateDeDebut;
     }
 
-    public void setDateDeDebut(Date date_de_debut)
+    public void setDateDeDebut(Date dateDeDebut)
     {
-        this.date_de_debut = date_de_debut;
+        this.dateDeDebut = dateDeDebut;
     }
 
     public Date getDateDeFin()
     {
-        return date_de_fin;
+        return dateDeFin;
     }
 
-    public void setDateDeFin(Date date_de_fin)
+    public void setDateDeFin(Date dateDeFin)
     {
-        this.date_de_fin = date_de_fin;
+        this.dateDeFin = dateDeFin;
     }
 
     public int getIdClient()
@@ -69,12 +73,12 @@ public class Location {
         this.id_client = id_client;
     }
 
-    public int getIdVoiture()
+    public long getIdVoiture()
     {
         return id_voiture;
     }
 
-    public void setIdVoiture(int id_voiture)
+    public void setIdVoiture(long id_voiture)
     {
         this.id_voiture = id_voiture;
     }
